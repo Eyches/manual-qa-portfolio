@@ -1,0 +1,303 @@
+{
+  "info": {
+    "_postman_id": "aa484537-61bf-4931-a27f-aacd74e3c254",
+    "name": "JSONPlaceholder - API QA Mini Case",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59042405",
+    "_collection_link": "https://go.postman.co/collection/59042405-aa484537-61bf-4931-a27f-aacd74e3c254?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Existing Post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\nconst jsonData = pm.response.json();\npm.test(\"Id is 5\", function () {\n    pm.expect(jsonData.id).to.eql(5);\n});\n\npm.test(\"Title is a string\", function () {\n    pm.expect(jsonData.title).to.be.a(\"string\");\n});\npm.test(\"Body is not empty string\", function () {\n    pm.expect(jsonData.body).to.be.a(\"string\");\npm.expect(jsonData.body.length).to.be.above(0);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/5",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts",
+            "5"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Existing Post",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/5",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "5"
+              ]
+            }
+          },
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": ":status",
+              "value": "200"
+            },
+            {
+              "key": "date",
+              "value": "Tue, 27 Oct 2026 18:07:01 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "key": "cache-control",
+              "value": "max-age=43200"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"e1-IivojO0CtPZmcMK0iydTbsfG7Wc\""
+            },
+            {
+              "key": "expires",
+              "value": "-1"
+            },
+            {
+              "key": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "vary",
+              "value": "Origin, Accept-Encoding"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "x-ratelimit-limit",
+              "value": "3600000"
+            },
+            {
+              "key": "x-ratelimit-remaining",
+              "value": "3599983"
+            },
+            {
+              "key": "x-ratelimit-reset",
+              "value": "1790812826"
+            },
+            {
+              "key": "age",
+              "value": "5006"
+            },
+            {
+              "key": "report-to",
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=RclT2OfkEMr1MQBNm9yRviqjGU6nVCDCf0puz7kpIgshiX2slzZoNBDr1ytTuNJTDrJNvQVxUo33GV5YG8kuDZpD61W6eayZWTW39cHATXnxAshpL%2FcS8CfLDHdheidjYl5yVmuzDwK%2BnnpCH8HSNsU8Hw5ZfUrHOlqn\"}]}"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "HIT"
+            },
+            {
+              "key": "nel",
+              "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+            },
+            {
+              "key": "content-encoding",
+              "value": "br"
+            },
+            {
+              "key": "server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "cf-ray",
+              "value": "a513a352feee9f3e-WAW"
+            },
+            {
+              "key": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"userId\": 1,\n  \"id\": 5,\n  \"title\": \"nesciunt quas odio\",\n  \"body\": \"repudiandae veniam quaerat sunt sed\\nalias aut fugiat sit autem sed est\\nvoluptatem omnis possimus esse voluptatibus quis\\nest aut tenetur dolor neque\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Non-existing Post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {\n    pm.response.to.have.status(404);\n});\npm.test(\"Response body is empty JSON object\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData).to.deep.equal({});\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/99999",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts",
+            "99999"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Non-existing Post",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/99999",
+              "protocol": "https",
+              "host": [
+                "jsonplaceholder",
+                "typicode",
+                "com"
+              ],
+              "path": [
+                "posts",
+                "99999"
+              ]
+            }
+          },
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": ":status",
+              "value": "404"
+            },
+            {
+              "key": "date",
+              "value": "Tue, 27 Oct 2026 18:17:57 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "content-length",
+              "value": "2"
+            },
+            {
+              "key": "access-control-allow-credentials",
+              "value": "true"
+            },
+            {
+              "key": "cache-control",
+              "value": "max-age=43200"
+            },
+            {
+              "key": "etag",
+              "value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+            },
+            {
+              "key": "expires",
+              "value": "-1"
+            },
+            {
+              "key": "pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "vary",
+              "value": "Origin, Accept-Encoding"
+            },
+            {
+              "key": "x-content-type-options",
+              "value": "nosniff"
+            },
+            {
+              "key": "x-powered-by",
+              "value": "Express"
+            },
+            {
+              "key": "x-ratelimit-limit",
+              "value": "3600000"
+            },
+            {
+              "key": "x-ratelimit-remaining",
+              "value": "3599999"
+            },
+            {
+              "key": "x-ratelimit-reset",
+              "value": "1793102342"
+            },
+            {
+              "key": "nel",
+              "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+            },
+            {
+              "key": "age",
+              "value": "23726"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "HIT"
+            },
+            {
+              "key": "report-to",
+              "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=cU8v5YuozMhzk3XZwjhLdI34qFxWbnT1IoKRxnzX3aTtrcRWTnSqeups6bAXO6UGTckntbMeucXtzOug%2BqQf7obj2zLhVgZc%2FUk%2ByLAttLF6aM%2F8NGb9OP4TfnjhZqnaEHfO9K7INbIOWHkJApHj5r8CzsMcxtbr6fUd\"}]}"
+            },
+            {
+              "key": "server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "cf-ray",
+              "value": "a513b356bb74570e-WAW"
+            },
+            {
+              "key": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            }
+          ],
+          "cookie": [],
+          "body": "{}"
+        }
+      ]
+    }
+  ]
+}
